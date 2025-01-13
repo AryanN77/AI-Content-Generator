@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import TanStackProvider from "@/provider/TanStackProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const roboto = Montserrat({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["500"]
 });
 
 export const metadata: Metadata = {
@@ -27,9 +23,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${roboto.className} antialiased`}
         >
-          {children}
+          <TanStackProvider>
+            {children}
+          </TanStackProvider>
         </body>
       </html>
     </ClerkProvider>
